@@ -25,3 +25,11 @@ test('escapes special characters in tags for both data-tags attribute and tag pi
   assert.match(html, /<span class="tag-pill">C\+\+ &amp; Friends<\/span>/);
   assert.match(html, /<span class="tag-pill">code&quot;injection<\/span>/);
 });
+
+test('renders a witty empty state card when there are no posts', () => {
+  const html = renderPostList([]);
+  assert.match(html, /class="teaser-card post-empty"/);
+  assert.match(html, /Nothing published yet\./);
+  assert.match(html, /href="\/experiments\/"/);
+  assert.doesNotMatch(html, /class="post-item"/);
+});

@@ -13,12 +13,12 @@ function renderExperiments() {
   <div class="experiments-panel">
     <div class="status-row"><span class="status-dot"></span><span class="status-label">// status: cooking</span></div>
     <h2>Something interesting is cooking.</h2>
-    <p>I'm building a set of interactive demos to go here &mdash; an attention visualizer, a tokenizer playground, and a couple of from-scratch teaching tools. This section will be updated soon.</p>
+    <p>I'm building a set of interactive demos to go here &mdash; a kernel/throughput playground, a couple of from-scratch architecture rebuilds, and an agent-orchestration sandbox. This section will be updated soon.</p>
     <div class="tag-pill-row">
-      <span class="tag-pill">attention heatmap</span>
-      <span class="tag-pill">tokenizer playground</span>
+      <span class="tag-pill">kernel profiler</span>
       <span class="tag-pill">tiny autograd</span>
-      <span class="tag-pill">embedding atlas</span>
+      <span class="tag-pill">agent trace viewer</span>
+      <span class="tag-pill">orchestration sandbox</span>
     </div>
     <a class="section-header__link" href="/writing/">In the meantime, read the writing &rarr;</a>
   </div>
@@ -35,10 +35,9 @@ function renderExperiments() {
 
 function renderAbout() {
   const cards = [
-    ['Inference efficiency', 'Quantization, speculative decoding, getting more out of one GPU.'],
-    ['Retrieval', 'Chunking strategies, rerankers, and where RAG quietly breaks.'],
-    ['Interpretability', 'Attention maps, probes, and small toy models I can fully inspect.'],
-    ['Eval', 'Harnesses I trust more than a single benchmark number.']
+    ['Hardware-aware inference', 'Kernels, memory bandwidth, and the tricks that make training and inference faster on the GPUs I actually have.'],
+    ['New algorithms & architectures', 'Chasing papers that change the computation itself, not just scale up the same one.'],
+    ['Agents & orchestration', 'Multi-step, tool-using systems &mdash; and figuring out where they quietly fall apart.']
   ].map(([title, desc]) => `<div class="about-card"><div class="about-card__title">${title}</div><div class="about-card__desc">${desc}</div></div>`).join('\n      ');
 
   const timeline = [
@@ -54,7 +53,7 @@ function renderAbout() {
 </section>
 <section class="section about-copy">
   <p>I'm Sudip &mdash; an AI engineer who's happiest taking something I half-understand from a paper and turning it into a tiny reproduction I can poke at. I care less about the leaderboard number and more about knowing exactly <em>why</em> a system behaves the way it does.</p>
-  <p>Day to day I work on retrieval, inference efficiency, and interpretability &mdash; chunking strategies and rerankers, quantization and speculative decoding, attention maps and small probes. This site is where I keep the receipts: what I tried, what broke, and what I'd do differently.</p>
+  <p>Day to day I work on inference optimization at the hardware level, new model architectures, and agent orchestration &mdash; kernels and memory bandwidth, papers that rethink the computation instead of just scaling it, and multi-step tool-using systems. This site is where I keep the receipts: what I tried, what broke, and what I'd do differently.</p>
 </section>
 <section class="section">
   <h2 class="section-label">What I'm into right now</h2>
@@ -92,7 +91,7 @@ function renderContact() {
 <section class="page-header contact-header">
   <div class="eyebrow">Contact</div>
   <h1>Say hello.</h1>
-  <p>I like comparing notes with people building in the same space. If you're working on inference, retrieval, or interpretability &mdash; or just want to share a paper &mdash; the fastest way to reach me is email.</p>
+  <p>I like comparing notes with people building in the same space. If you're working on inference optimization, new model architectures, or agentic systems &mdash; or just want to share a paper &mdash; the fastest way to reach me is email.</p>
 </section>
 <section class="section">
   <a class="contact-card" href="mailto:${config.contactEmail}">

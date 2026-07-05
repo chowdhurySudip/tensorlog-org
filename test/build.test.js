@@ -17,7 +17,6 @@ test('build produces every expected file', () => {
   assert.ok(fs.existsSync(path.join(DIST, 'about', 'index.html')));
   assert.ok(fs.existsSync(path.join(DIST, 'contact', 'index.html')));
   assert.ok(fs.existsSync(path.join(DIST, '404.html')));
-  assert.ok(fs.existsSync(path.join(DIST, 'article', 'rag-late-chunking', 'index.html')));
   assert.ok(fs.existsSync(path.join(DIST, 'sitemap.xml')));
   assert.ok(fs.existsSync(path.join(DIST, 'robots.txt')));
   assert.ok(fs.existsSync(path.join(DIST, 'feed.xml')));
@@ -25,14 +24,16 @@ test('build produces every expected file', () => {
   assert.ok(fs.existsSync(path.join(DIST, 'js', 'tag-filter.js')));
 });
 
-test('home page only lists 5 of the 6 posts', () => {
+test('home page shows empty state when there are no posts', () => {
   const html = fs.readFileSync(path.join(DIST, 'index.html'), 'utf8');
   const matches = html.match(/class="post-item"/g) || [];
-  assert.equal(matches.length, 5);
+  assert.equal(matches.length, 0);
+  assert.match(html, /class="teaser-card post-empty"/);
 });
 
-test('writing page lists all 6 posts', () => {
+test('writing page shows empty state when there are no posts', () => {
   const html = fs.readFileSync(path.join(DIST, 'writing', 'index.html'), 'utf8');
   const matches = html.match(/class="post-item"/g) || [];
-  assert.equal(matches.length, 6);
+  assert.equal(matches.length, 0);
+  assert.match(html, /class="teaser-card post-empty"/);
 });

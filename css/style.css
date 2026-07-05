@@ -214,6 +214,13 @@ a { color: inherit; }
   color: var(--text-secondary);
   max-width: 480px;
 }
+.post-empty__link {
+  display: inline-block;
+  margin-top: 20px;
+  font: 500 14px 'Geist', sans-serif;
+  color: var(--accent);
+  text-decoration: none;
+}
 
 /* Tag filter (writing page) */
 .tag-filter {

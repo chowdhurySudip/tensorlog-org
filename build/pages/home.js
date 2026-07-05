@@ -32,7 +32,7 @@ function renderHome(posts) {
   <a class="teaser-card" href="/experiments/">
     <div class="status-row"><span class="status-dot"></span><span class="status-label">// status: cooking</span></div>
     <div class="teaser-card__title">Something interesting is cooking.</div>
-    <p class="teaser-card__body">Interactive demos &mdash; attention maps, a tokenizer playground, and a couple of from-scratch builds &mdash; will show up here soon.</p>
+    <p class="teaser-card__body">Interactive demos &mdash; a kernel/throughput playground, small from-scratch architectures, and an agent-orchestration sandbox &mdash; will show up here soon.</p>
   </a>
 </section>`;
 

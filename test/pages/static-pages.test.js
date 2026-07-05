@@ -10,12 +10,11 @@ test('renderExperiments shows the cooking teaser and a link back to writing', ()
   assert.match(html, /href="\/writing\/">In the meantime, read the writing/);
 });
 
-test('renderAbout shows the four focus-area cards and the timeline', () => {
+test('renderAbout shows the focus-area cards and the timeline', () => {
   const html = renderAbout();
-  assert.match(html, /Inference efficiency/);
-  assert.match(html, /Retrieval/);
-  assert.match(html, /Interpretability/);
-  assert.match(html, /Eval/);
+  assert.match(html, /Hardware-aware inference/);
+  assert.match(html, /New algorithms & architectures/);
+  assert.match(html, /Agents & orchestration/);
   assert.match(html, /ML Engineer/);
   assert.match(html, /href="\/contact\/">Get in touch/);
 });
