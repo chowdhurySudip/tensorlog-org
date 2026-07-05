@@ -1,0 +1,16 @@
+{
+  "name": "tensorlog-org",
+  "private": true,
+  "version": "1.0.0",
+  "description": "tensorlog.org static site build",
+  "scripts": {
+    "build": "node build.js",
+    "test": "node --test test/*.test.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "gray-matter": "^4.0.3"
+  }
+}
