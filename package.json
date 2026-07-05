@@ -5,7 +5,7 @@
   "description": "tensorlog.org static site build",
   "scripts": {
     "build": "node build.js",
-    "test": "node --test test/*.test.js"
+    "test": "node --test"
   },
   "engines": {
     "node": ">=18"
