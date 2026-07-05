@@ -33,3 +33,8 @@ test('computes read time and parses body into blocks', () => {
     { type: 'p', text: 'Body text for the newer post.' }
   ]);
 });
+
+test('returns an empty list when the posts directory does not exist', () => {
+  const posts = loadPosts(path.join(__dirname, 'fixtures', 'does-not-exist'));
+  assert.deepEqual(posts, []);
+});

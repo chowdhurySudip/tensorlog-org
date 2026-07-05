@@ -8,6 +8,7 @@ const { computeReadTime } = require('./read-time');
 const { formatDate } = require('./date');
 
 function loadPosts(postsDir) {
+  if (!fs.existsSync(postsDir)) return [];
   const files = fs.readdirSync(postsDir).filter(f => f.endsWith('.md'));
 
   const posts = files.map(file => {
