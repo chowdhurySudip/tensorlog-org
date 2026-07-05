@@ -8,6 +8,10 @@ const posts = [
   { slug: 'foo', title: 'Foo & Bar', isoDate: '2026-06-01', summary: 'A summary.' }
 ];
 
+const postsWithXmlChars = [
+  { slug: 'bar', title: 'Test Post', isoDate: '2026-06-01', summary: 'A <great> summary & more.' }
+];
+
 test('sitemap includes static pages and every post URL', () => {
   const xml = generateSitemap(posts);
   assert.match(xml, /<loc>https:\/\/tensorlog\.org\/<\/loc>/);
@@ -25,4 +29,9 @@ test('rss escapes XML entities in titles', () => {
   const xml = generateRss(posts);
   assert.match(xml, /<title>Foo &amp; Bar<\/title>/);
   assert.match(xml, /<link>https:\/\/tensorlog\.org\/article\/foo\/<\/link>/);
+});
+
+test('rss escapes XML entities in descriptions', () => {
+  const xml = generateRss(postsWithXmlChars);
+  assert.match(xml, /<description>A &lt;great&gt; summary &amp; more\.<\/description>/);
 });
