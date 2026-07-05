@@ -38,3 +38,25 @@ test('defaults og:type to website, allows override', () => {
   });
   assert.match(html, /<meta property="og:type" content="article">/);
 });
+
+test('escapes special characters in title and description', () => {
+  const html = renderLayout({
+    title: 'My "Post" & <Guide>',
+    description: 'A & B < C > D "E"',
+    canonicalPath: '/',
+    activeNav: null,
+    bodyHtml: ''
+  });
+  // Check title tag is escaped
+  assert.match(html, /<title>My &quot;Post&quot; &amp; &lt;Guide&gt;<\/title>/);
+  // Check meta description is escaped
+  assert.match(html, /<meta name="description" content="A &amp; B &lt; C &gt; D &quot;E&quot;">/);
+  // Check og:title is escaped
+  assert.match(html, /<meta property="og:title" content="My &quot;Post&quot; &amp; &lt;Guide&gt;">/);
+  // Check og:description is escaped
+  assert.match(html, /<meta property="og:description" content="A &amp; B &lt; C &gt; D &quot;E&quot;">/);
+  // Check twitter:title is escaped
+  assert.match(html, /<meta name="twitter:title" content="My &quot;Post&quot; &amp; &lt;Guide&gt;">/);
+  // Check twitter:description is escaped
+  assert.match(html, /<meta name="twitter:description" content="A &amp; B &lt; C &gt; D &quot;E&quot;">/);
+});

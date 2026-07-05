@@ -1,6 +1,7 @@
 'use strict';
 
 const config = require('./site-config');
+const { escapeHtml } = require('./markdown');
 
 function renderNav(activeNav) {
   return config.navItems.map(item => {
@@ -13,22 +14,24 @@ function renderNav(activeNav) {
 
 function renderLayout({ title, description, canonicalPath, activeNav, bodyHtml, ogType = 'website' }) {
   const canonicalUrl = `${config.baseUrl}${canonicalPath}`;
+  const escapedTitle = escapeHtml(title);
+  const escapedDescription = escapeHtml(description);
 
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>${title}</title>
-<meta name="description" content="${description}">
+<title>${escapedTitle}</title>
+<meta name="description" content="${escapedDescription}">
 <link rel="canonical" href="${canonicalUrl}">
-<meta property="og:title" content="${title}">
-<meta property="og:description" content="${description}">
+<meta property="og:title" content="${escapedTitle}">
+<meta property="og:description" content="${escapedDescription}">
 <meta property="og:type" content="${ogType}">
 <meta property="og:url" content="${canonicalUrl}">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="${title}">
-<meta name="twitter:description" content="${description}">
+<meta name="twitter:title" content="${escapedTitle}">
+<meta name="twitter:description" content="${escapedDescription}">
 <link rel="alternate" type="application/rss+xml" title="${config.siteTitle}" href="${config.baseUrl}/feed.xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
