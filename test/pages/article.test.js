@@ -31,3 +31,36 @@ test('renders title, meta, and every block type', () => {
   assert.match(html, /class="author-bio"/);
   assert.match(html, /href="\/writing\/"/);
 });
+
+test('escapes HTML metacharacters in title, tags, and all block types', () => {
+  const postWithMetachars = {
+    slug: 'xss-test',
+    title: '<script>alert("xss")</script>',
+    date: 'Jul 2026',
+    readTime: '2 min read',
+    tags: ['<tag>', 'a&b', 'c"d'],
+    summary: 'A summary.',
+    blocks: [
+      { type: 'p', text: 'Paragraph with <angle> & brackets' },
+      { type: 'h2', text: 'Heading with "quotes" & ampers&and' },
+      { type: 'quote', text: 'Quote <b>with html</b> & symbols' },
+      { type: 'code', text: 'if (a < b && c > d) { }' }
+    ]
+  };
+
+  const html = renderArticle(postWithMetachars);
+
+  // Title escaping in h1
+  assert.match(html, /<h1>&lt;script&gt;alert\(&quot;xss&quot;\)&lt;\/script&gt;<\/h1>/);
+
+  // Tag escaping in tag pills
+  assert.match(html, /<span class="tag-pill">&lt;tag&gt;<\/span>/);
+  assert.match(html, /<span class="tag-pill">a&amp;b<\/span>/);
+  assert.match(html, /<span class="tag-pill">c&quot;d<\/span>/);
+
+  // Block content escaping
+  assert.match(html, /<p>Paragraph with &lt;angle&gt; &amp; brackets<\/p>/);
+  assert.match(html, /<h2>Heading with &quot;quotes&quot; &amp; ampers&amp;and<\/h2>/);
+  assert.match(html, /<blockquote>Quote &lt;b&gt;with html&lt;\/b&gt; &amp; symbols<\/blockquote>/);
+  assert.match(html, /<pre><code>if \(a &lt; b &amp;&amp; c &gt; d\) \{ \}<\/code><\/pre>/);
+});
